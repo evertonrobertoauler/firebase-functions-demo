@@ -9,8 +9,11 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod && firebase deploy",
-    "deploy:functions": "(cd functions; npm run build) && firebase deploy --only functions"
+    "build:hosting": "ng build --prod",
+    "build:functions": "cd functions; npm run build",
+    "deploy": "run-p build:* && firebase deploy",
+    "deploy:hosting": "run-s build:hosting && firebase deploy --only hosting",
+    "deploy:functions": "run-s build:functions && firebase deploy --only functions"
   },
   "private": true,
   "dependencies": {
@@ -37,9 +40,10 @@
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "npm-run-all": "^4.0.2",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",

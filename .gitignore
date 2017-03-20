@@ -5,6 +5,7 @@
 yarn*
 /tmp
 /out-tsc
+/functions/index.js
 
 # dependencies
 node_modules
